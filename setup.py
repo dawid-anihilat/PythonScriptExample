@@ -1,7 +1,7 @@
-from setuptools import se4tup, find_packges
+from setuptools import setup, find_packages
 
 with open('README.rst','r') as f:
-        readme: f.read()
+        readme = f.read()
 
 setup(
     name='pgbackup',
@@ -12,5 +12,10 @@ setup(
     author_email='dawid.adamski@atos.net',
     packages=find_packages('src'),
     package_dir={'':'src'},
-    install_requires=[]
+    install_requires=['boto3'],
+    entry_points={
+            'console_scripts':  [
+                    'pgbackup=pgbackup.cli:main',
+                ]
+        }
 )
